@@ -1,0 +1,18 @@
+services:
+    arthem.google_api.places.query.abstract:
+        abstract: true
+        class: Arthem\GoogleApi\Domain\Place\Query\AbstractHandler
+        arguments:
+            - "@arthem.google_api.place.client"
+
+    arthem.google_api.places.query.handler.nearbysearch:
+        class: Arthem\GoogleApi\Domain\Place\Query\Search\NearbySearchHandler
+        parent: arthem.google_api.places.query.abstract
+        tags:
+            - { name: tactician.handler, command: Arthem\GoogleApi\Domain\Place\Query\Search\NearbySearchQuery }
+
+    arthem.google_api.places.query.handler.details:
+        class: Arthem\GoogleApi\Domain\Place\Query\Place\PlaceDetailsHandler
+        parent: arthem.google_api.places.query.abstract
+        tags:
+            - { name: tactician.handler, command: Arthem\GoogleApi\Domain\Place\Query\Place\PlaceDetailsQuery }

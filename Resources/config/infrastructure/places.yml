@@ -1,0 +1,9 @@
+services:
+    arthem.google_api.place.hydrator.place:
+        class: Arthem\GoogleApi\Infrastructure\Place\Hydrator\PlaceHydrator
+
+    arthem.google_api.place.client:
+        class: Arthem\GoogleApi\Infrastructure\Place\PlaceClient
+        parent: arthem.google_api.client
+        arguments:
+            - "@arthem.google_api.place.hydrator.place"

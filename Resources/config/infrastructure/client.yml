@@ -1,0 +1,19 @@
+services:
+    arthem.guzzle.client:
+        public: false
+        class: GuzzleHttp\Client
+
+    arthem.google_api.client.decoder.json:
+        class: Arthem\GoogleApi\Infrastructure\Client\Decoder\JsonDecoder
+
+    arthem.google_api.client:
+        abstract: true
+        class: Arthem\GoogleApi\Infrastructure\Client\Client
+        arguments:
+            - "@arthem.guzzle.client"
+            - "@arthem.google_api.client.decoder.json"
+            - ~ # api key
+        calls:
+            - [setLogger, ["@logger"]]
+        tags:
+            - { name: monolog.logger, channel: google_api }
