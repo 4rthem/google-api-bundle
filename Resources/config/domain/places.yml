@@ -11,6 +11,12 @@ services:
         tags:
             - { name: tactician.handler, command: Arthem\GoogleApi\Domain\Place\Query\Search\NearbySearchQuery }
 
+    arthem.google_api.places.query.handler.textsearch:
+        class: Arthem\GoogleApi\Domain\Place\Query\Search\TextSearchHandler
+        parent: arthem.google_api.places.query.abstract
+        tags:
+            - { name: tactician.handler, command: Arthem\GoogleApi\Domain\Place\Query\Search\TextSearchQuery }
+
     arthem.google_api.places.query.handler.details:
         class: Arthem\GoogleApi\Domain\Place\Query\Place\PlaceDetailsHandler
         parent: arthem.google_api.places.query.abstract
